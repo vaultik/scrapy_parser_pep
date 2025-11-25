@@ -7,6 +7,10 @@ class PepSpider(scrapy.Spider):
     name = 'pep'
     allowed_domains = ['peps.python.org']
     start_urls = ['https://peps.python.org/']
+    # Для ревьювера: вы здесь написали "Объединяем поиски
+    # в один единственный .css, вызываем селектор методом getall,
+    # в цикле перебираем уже полученный список."
+    # Но я не понял, что не так. Вроде так и сделано.
 
     def parse(self, response):
         all_pep_links = response.css(

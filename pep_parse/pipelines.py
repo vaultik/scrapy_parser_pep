@@ -1,4 +1,5 @@
 import csv
+from collections import defaultdict
 from datetime import datetime as dt
 
 from pep_parse.constants import (
@@ -6,39 +7,30 @@ from pep_parse.constants import (
 )
 
 
-RESULTS_STATUS = {
-    'A': 0,
-    'D': 0,
-    'F': 0,
-    'P': 0,
-    'R': 0,
-    'S': 0,
-    'W': 0,
-    'Total': 0
-}
-
-
 class PepParsePipeline:
 
+    def __init__(self):
+        self.statuses = defaultdict(int)
+        results_dir.mkdir(exist_ok=True)
+
     def open_spider(self, spider):
-        pass
+        self.statuses = defaultdict(int)
 
     def process_item(self, item, spider):
-        print("PIPELINE GOT ITEM:", item['number'], item['status'])
-        RESULTS_STATUS[item['status'][0]] += 1
-        RESULTS_STATUS['Total'] += 1
+        self.statuses[item['status']] += 1
         return item
 
     def close_spider(self, spider):
-        results_dir.mkdir(exist_ok=True)
         now_formatted = dt.now().strftime(DATETIME_FORMAT)
-
         file_name = f'{status_summary_file}_{now_formatted}.csv'
         file_path = results_dir / file_name
 
+        results_data = (
+            ['Статус', 'Количество'],
+            *([[status, count] for status, count in self.statuses.items()]),
+            ['Total', sum(self.statuses.values())]
+        )
+
         with open(file_path, 'w', encoding='utf-8', newline='') as f:
             writer = csv.writer(f, dialect='unix')
-            writer.writerow(['Статус', 'Количество'])
-
-            for status, count in RESULTS_STATUS.items():
-                writer.writerow([status, count])
+            writer.writerows(results_data)
