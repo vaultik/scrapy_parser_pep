@@ -1,6 +1,3 @@
-from pep_parse.constants import results_dir
-
-
 BOT_NAME = 'pep_parse'
 
 NEWSPIDER_MODULE = 'pep_parse.spiders'
@@ -11,7 +8,11 @@ ROBOTSTXT_OBEY = True
 FEED_EXPORT_ENCODING = "utf-8"
 
 FEEDS = {
-    f'{results_dir}/pep_%(time)s.csv': {
+    # Тесты на сайте ругаются на f'{results_dir}/pep_%(time)s.csv':
+    # AssertionError: Убедитесь, что в ключе словаря `FEEDS`
+    # перед именем файла указан путь к директории `results/`
+    # Если просто results_dir = 'results', то папка создается в pep_parse
+    'results/pep_%(time)s.csv': {
         'format': 'csv',
         'fields': ['number', 'name', 'status'],
         'overwrite': True
