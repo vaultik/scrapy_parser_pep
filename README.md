@@ -1,65 +1,43 @@
-## Summary: ##
-    Привет! 
-_Данный проект - парсинг с сайта PEP_ 
+# PEP Parser (Scrapy)
+ 
+A Scrapy spider that crawls python.org and collects PEP data into CSV reports.
+ 
+## Features
+ 
+- Crawls all PEP pages and exports: number, title, status → `pep_TIMESTAMP.csv`
+- Aggregates PEP count by status + total count → `status_summary_TIMESTAMP.csv`
 
-**Проект работает через фреймворк Scrapy.**
-
-**Функции:**
-
-_1) Проходит по всем страницам PEP и выписывает в файл: номер, название и статус
-
-_2) Считает количество PEP в каждом статусе и общее количество PEP, записывает результат в файл csv
-
-_Даже имеются необходимые тесты на pytest!!!_
-
-_В общем - пользуйтесь, кому понадобится!)_
-
----
-
-## Стек основных технологий: ##
+## Tech Stack
 
 - **Python 3.12+**
 - **Scrapy 2.5.1**
 - **lxml 5.2.1**
 - **pytest 6.2.5**
 
-Список необходимых зависимостей см. в (requirements.txt)
-
----
-
-## **_Как запустить проект:_** ##
-
-**_Клонировать репозиторий и перейти в него в командной строке:_**
-
-    git clone https://github.com/Marakes/scrapy_parser_pep
-
-    cd scrapy_parser_pep
-
-**_Cоздать и активировать виртуальное окружение:_**
-
-    python3 -m venv venv
-
-  * Если у вас Linux/macOS
-
-        source venv/bin/activate
-
-  * Если у вас windows
-
-        source venv/scripts/activate
-
-**_Установить зависимости из файла requirements.txt:_**
-
-    python3 -m pip install --upgrade pip
-    pip install -r requirements.txt
-
-**_Запуск:_**
-
-    scrapy crawl pep  # Выполняет обе функции, что описаны в начале
-
-
-
-## Автор проекта: ##
-
-Невероятный и непревзойдённый (как и все) студент Яндекс Практикума :)
-
-https://github.com/Marakes
+Full list of dependencies: `requirements.txt`
+ 
+## How to Run
+ 
+```bash
+# Clone the repository
+git clone https://github.com/Marakes/scrapy_parser_pep
+cd scrapy_parser_pep
+ 
+# Create and activate virtual environment
+python3 -m venv venv
+source venv/bin/activate        # Windows: venv\Scripts\activate
+ 
+# Install dependencies
+pip install --upgrade pip
+pip install -r requirements.txt
+ 
+# Run the spider
+scrapy crawl pep
+```
+ 
+Output CSV files are saved to the `data/` directory.
+ 
+## Author
+ 
+[github.com/Marakes](https://github.com/Marakes)
+ 
