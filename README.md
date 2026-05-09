@@ -20,7 +20,7 @@ Full list of dependencies: `requirements.txt`
  
 ```bash
 # Clone the repository
-git clone https://github.com/Marakes/scrapy_parser_pep
+git clone https://github.com/vaultik/scrapy_parser_pep
 cd scrapy_parser_pep
  
 # Create and activate virtual environment
@@ -39,5 +39,5 @@ Output CSV files are saved to the `data/` directory.
  
 ## Author
  
-[github.com/Marakes](https://github.com/Marakes)
+[github.com/vaultik](https://github.com/vaultik)
  
